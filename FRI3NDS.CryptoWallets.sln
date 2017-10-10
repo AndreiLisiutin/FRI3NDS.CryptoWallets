@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FRI3NDS.CryptoWallets.Web", "FRI3NDS.CryptoWallets.Web\FRI3NDS.CryptoWallets.Web.csproj", "{B60DE523-B235-458A-AF7A-E71DE2CE0039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRI3NDS.CryptoWallets.Core", "FRI3NDS.CryptoWallets.Core\FRI3NDS.CryptoWallets.Core.csproj", "{514717F7-5896-47DD-ABE3-8A84D9E6AE98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRI3NDS.CryptoWallets.Data", "FRI3NDS.CryptoWallets.Data\FRI3NDS.CryptoWallets.Data.csproj", "{73357945-3DEB-488E-BE67-1097A3AED054}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRI3NDS.CryptoWallets.Utils", "FRI3NDS.CryptoWallets.Utils\FRI3NDS.CryptoWallets.Utils.csproj", "{1B367A7E-68D8-40D3-ADB8-284BC07CC73E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FRI3NDS.CryptoWallets.Migrator", "FRI3NDS.CryptoWallets.Migrator\FRI3NDS.CryptoWallets.Migrator.csproj", "{A705CEC9-95B6-48E5-A91E-06BF729354E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B60DE523-B235-458A-AF7A-E71DE2CE0039}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60DE523-B235-458A-AF7A-E71DE2CE0039}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60DE523-B235-458A-AF7A-E71DE2CE0039}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60DE523-B235-458A-AF7A-E71DE2CE0039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{514717F7-5896-47DD-ABE3-8A84D9E6AE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{514717F7-5896-47DD-ABE3-8A84D9E6AE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{514717F7-5896-47DD-ABE3-8A84D9E6AE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{514717F7-5896-47DD-ABE3-8A84D9E6AE98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73357945-3DEB-488E-BE67-1097A3AED054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73357945-3DEB-488E-BE67-1097A3AED054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73357945-3DEB-488E-BE67-1097A3AED054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73357945-3DEB-488E-BE67-1097A3AED054}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B367A7E-68D8-40D3-ADB8-284BC07CC73E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B367A7E-68D8-40D3-ADB8-284BC07CC73E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B367A7E-68D8-40D3-ADB8-284BC07CC73E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B367A7E-68D8-40D3-ADB8-284BC07CC73E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A705CEC9-95B6-48E5-A91E-06BF729354E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A705CEC9-95B6-48E5-A91E-06BF729354E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A705CEC9-95B6-48E5-A91E-06BF729354E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A705CEC9-95B6-48E5-A91E-06BF729354E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36183E7C-B5D4-4790-BEB6-9F1497D67BB2}
+	EndGlobalSection
+EndGlobal
