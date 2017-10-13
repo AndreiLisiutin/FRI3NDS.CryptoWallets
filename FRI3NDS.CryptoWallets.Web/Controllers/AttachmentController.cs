@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using FRI3NDS.CryptoWallets.Utils;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace FRI3NDS.CryptoWallets.Web.Controllers
 {
@@ -15,8 +12,15 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	[Route("api/Attachment")]
 	public class AttachmentController : Controller
 	{
+		/// <summary>
+		/// Сервис вложений в документ.
+		/// </summary>
 		protected IAttachmentService AttachmentService { get; private set; }
 
+		/// <summary>
+		/// Контроллер вложений в документ.
+		/// </summary>
+		/// <param name="attachmentService">Сервис вложений в документ.</param>
 		public AttachmentController(IAttachmentService attachmentService)
 		{
 			this.AttachmentService = attachmentService;

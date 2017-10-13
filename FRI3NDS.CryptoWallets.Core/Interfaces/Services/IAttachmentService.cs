@@ -1,9 +1,6 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Core.Interfaces.Services
 {

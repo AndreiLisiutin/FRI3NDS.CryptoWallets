@@ -1,19 +1,13 @@
-﻿using AutoMapper;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
-using FRI3NDS.CryptoWallets.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
 {
 	/// <summary>
-	/// Репозиторий статусов сертификатов.
+	/// Репозиторий типов сертификатов.
 	/// </summary>
 	public class CertificateTypeRepository : RepositoryBase<CertificateType>, ICertificateTypeRepository
 	{
@@ -47,19 +41,19 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		}
 
 		/// <summary>
-		/// Получить статус сертификата по идентификатору сатуса.
+		/// Получить тип сертификата по идентификатору типа.
 		/// </summary>
-		/// <param name="id">Идентификатор сатуса.</param>
-		/// <returns>Статус сертификата, найденный по его идентификатору.</returns>
+		/// <param name="id">Идентификатор типа.</param>
+		/// <returns>Тип сертификата, найденный по его идентификатору.</returns>
 		public CertificateType GetById(int id)
 		{
 			return _list.FirstOrDefault(e => e.CertificateTypeId == id);
 		}
 
 		/// <summary>
-		/// Получить список статусов сертификатов.
+		/// Получить список типов сертификатов.
 		/// </summary>
-		/// <returns>Список статусов сертификатов.</returns>
+		/// <returns>Список типов сертификатов.</returns>
 		public List<CertificateType> Get()
 		{
 			return _list;

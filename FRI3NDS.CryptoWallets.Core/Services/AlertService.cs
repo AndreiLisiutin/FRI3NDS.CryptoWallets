@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
-using FRI3NDS.CryptoWallets.Core.Models.Domain;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
+using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using System;
+using System.Collections.Generic;
 
 namespace FRI3NDS.CryptoWallets.Core.Services
 {
@@ -22,7 +19,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// Получить оповещение по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор оповещения.</param>
-		/// <returns>Оповешение.</returns>
+		/// <returns>Оповещение.</returns>
 		public Alert GetById(Guid id)
 		{
 			using (var uow = this.CreateUnitOfWork())
@@ -44,7 +41,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		}
 
 		/// <summary>
-		/// Сохренить оповещение.
+		/// Сохранить оповещение.
 		/// </summary>
 		/// <param name="alert">Сохраняемое оповещение.</param>
 		/// <returns>Сохраненное оповещение с заполненным идентификатором</returns>

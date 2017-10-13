@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
-using FRI3NDS.CryptoWallets.Core.Models.Domain;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
+using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using System.Collections.Generic;
 
 namespace FRI3NDS.CryptoWallets.Core.Services
 {

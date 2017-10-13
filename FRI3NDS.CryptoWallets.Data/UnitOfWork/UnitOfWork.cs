@@ -6,11 +6,7 @@ using FRI3NDS.CryptoWallets.Data.Repositories._Admin;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Data.UnitOfWork
 {
@@ -38,7 +34,7 @@ namespace FRI3NDS.CryptoWallets.Data.UnitOfWork
 		public IAlertFrequencyRepository AlertFrequencyRepository => new AlertFrequencyRepository(this.DataContext);
 
 		/// <summary>
-		/// Репозиторий типов частоты оповещений.
+		/// Репозиторий оповещений.
 		/// </summary>
 		public IAlertRepository AlertRepository => new AlertRepository(this.DataContext);
 
@@ -46,6 +42,86 @@ namespace FRI3NDS.CryptoWallets.Data.UnitOfWork
 		/// Репозиторий вложений в документ (файлов).
 		/// </summary>
 		public IAttachmentRepository AttachmentRepository => new AttachmentRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий сертификатов 1С пользователя.
+		/// </summary>
+		public ICertificateRepository CertificateRepository => new CertificateRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий статусов сертификатов.
+		/// </summary>
+		public ICertificateStateRepository CertificateStateRepository => new CertificateStateRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий типов сертификатов.
+		/// </summary>
+		public ICertificateTypeRepository CertificateTypeRepository => new CertificateTypeRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий городов.
+		/// </summary>
+		public ICityRepository CityRepository => new CityRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий стран.
+		/// </summary>
+		public ICountryRepository CountryRepository => new CountryRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий валют.
+		/// </summary>
+		public ICurrencyRepository CurrencyRepository => new CurrencyRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий курсов валюты.
+		/// </summary>
+		public ICurrencyRateRepository CurrencyRateRepository => new CurrencyRateRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий типов валют.
+		/// </summary>
+		public ICurrencyTypeRepository CurrencyTypeRepository => new CurrencyTypeRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий документов.
+		/// </summary>
+		public IDocumentRepository DocumentRepository => new DocumentRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий ЧаВо.
+		/// </summary>
+		public IFaqRepository FaqRepository => new FaqRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий вопросов пользователя.
+		/// </summary>
+		public IQuestionRepository QuestionRepository => new QuestionRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий регионов.
+		/// </summary>
+		public IRegionRepository RegionRepository => new RegionRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий транзакций.
+		/// </summary>
+		public ITransactionRepository TransactionRepository => new TransactionRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий шагов транзакции.
+		/// </summary>
+		public ITransactonActionRepository TransactonActionRepository => new TransactonActionRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий пользователей.
+		/// </summary>
+		public IUserRepository UserRepository => new UserRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий кошельков.
+		/// </summary>
+		public IWalletRepository WalletRepository => new WalletRepository(this.DataContext);
 
 		#endregion
 
@@ -125,7 +201,7 @@ namespace FRI3NDS.CryptoWallets.Data.UnitOfWork
 	}
 
 	/// <summary>
-	/// Админская едница работы. Чтоб не засорять основной сайт.
+	/// Админская единица работы. Чтоб не засорять основной сайт.
 	/// </summary>
 	public class AdminUnitOfWork : UnitOfWork, IAdminUnitOfWork
 	{

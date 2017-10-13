@@ -4,10 +4,6 @@ using FRI3NDS.CryptoWallets.Core.Services;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 {
@@ -33,8 +29,27 @@ namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 		/// <param name="services">Набор сервисов.</param>
 		private static void ConfigureCoreServices(IServiceCollection services)
 		{
-			services.AddTransient<IAlertService, AlertService>();
+
+			// сервисы - компоненты с бизнес-логикой приложения
 			services.AddTransient<IAlertFrequencyService, AlertFrequencyService>();
+			services.AddTransient<IAlertService, AlertService>();
+			services.AddTransient<IAttachmentService, AttachmentService>();
+			services.AddTransient<ICertificateService, CertificateService>();
+			services.AddTransient<ICertificateStateService, CertificateStateService>();
+			services.AddTransient<ICertificateTypeService, CertificateTypeService>();
+			services.AddTransient<ICityService, CityService>();
+			services.AddTransient<ICountryService, CountryService>();
+			services.AddTransient<ICurrencyService, CurrencyService>();
+			services.AddTransient<ICurrencyRateService, CurrencyRateService>();
+			services.AddTransient<ICurrencyTypeService, CurrencyTypeService>();
+			services.AddTransient<IDocumentService, DocumentService>();
+			services.AddTransient<IFaqService, FaqService>();
+			services.AddTransient<IQuestionService, QuestionService>();
+			services.AddTransient<IRegionService, RegionService>();
+			services.AddTransient<ITransactionService, TransactionService>();
+			services.AddTransient<ITransactonActionService, TransactonActionService>();
+			services.AddTransient<IUserService, UserService>();
+			services.AddTransient<IWalletService, WalletService>();
 		}
 
 		/// <summary>

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using FRI3NDS.CryptoWallets.Utils;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace FRI3NDS.CryptoWallets.Web.Controllers
 {
@@ -15,8 +11,15 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	[Route("api/AlertFrequency")]
 	public class AlertFrequencyController : Controller
 	{
+		/// <summary>
+		/// Сервис типов оповещений об изменении курса по частоте.
+		/// </summary>
 		protected IAlertFrequencyService AlertFrequencyService { get; private set; }
 
+		/// <summary>
+		/// Контроллер типов оповещений об изменении курса по частоте.
+		/// </summary>
+		/// <param name="alertFrequencyService">Сервис типов оповещений об изменении курса по частоте.</param>
 		public AlertFrequencyController(IAlertFrequencyService alertFrequencyService)
 		{
 			this.AlertFrequencyService = alertFrequencyService;

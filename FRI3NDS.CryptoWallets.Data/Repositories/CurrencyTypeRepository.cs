@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
-using FRI3NDS.CryptoWallets.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
 {
@@ -37,7 +31,7 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		}
 
 		/// <summary>
-		/// Получить тип валюты по идентификатору сатуса.
+		/// Получить тип валюты по идентификатору статуса.
 		/// </summary>
 		/// <param name="id">Идентификатор типа валюты.</param>
 		/// <returns>Тип валюты, найденный по его идентификатору.</returns>

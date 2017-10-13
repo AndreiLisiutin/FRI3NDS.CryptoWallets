@@ -1,10 +1,6 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories._Admin;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data
 {
@@ -21,7 +17,7 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data
 		IAlertFrequencyRepository AlertFrequencyRepository { get; }
 
 		/// <summary>
-		/// Репозиторий типов частоты оповещений.
+		/// Репозиторий оповещений.
 		/// </summary>
 		IAlertRepository AlertRepository { get; }
 
@@ -29,6 +25,86 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data
 		/// Репозиторий вложений в документ (файлов).
 		/// </summary>
 		IAttachmentRepository AttachmentRepository { get; }
+
+		/// <summary>
+		/// Репозиторий сертификатов 1С пользователя.
+		/// </summary>
+		ICertificateRepository CertificateRepository { get; }
+
+		/// <summary>
+		/// Репозиторий статусов сертификатов.
+		/// </summary>
+		ICertificateStateRepository CertificateStateRepository { get; }
+
+		/// <summary>
+		/// Репозиторий типов сертификатов.
+		/// </summary>
+		ICertificateTypeRepository CertificateTypeRepository { get; }
+
+		/// <summary>
+		/// Репозиторий городов.
+		/// </summary>
+		ICityRepository CityRepository { get; }
+
+		/// <summary>
+		/// Репозиторий стран.
+		/// </summary>
+		ICountryRepository CountryRepository { get; }
+
+		/// <summary>
+		/// Репозиторий валют.
+		/// </summary>
+		ICurrencyRepository CurrencyRepository { get; }
+
+		/// <summary>
+		/// Репозиторий курсов валюты.
+		/// </summary>
+		ICurrencyRateRepository CurrencyRateRepository { get; }
+
+		/// <summary>
+		/// Репозиторий типов валют.
+		/// </summary>
+		ICurrencyTypeRepository CurrencyTypeRepository { get; }
+
+		/// <summary>
+		/// Репозиторий документов.
+		/// </summary>
+		IDocumentRepository DocumentRepository { get; }
+
+		/// <summary>
+		/// Репозиторий ЧаВо.
+		/// </summary>
+		IFaqRepository FaqRepository { get; }
+
+		/// <summary>
+		/// Репозиторий вопросов пользователя.
+		/// </summary>
+		IQuestionRepository QuestionRepository { get; }
+
+		/// <summary>
+		/// Репозиторий регионов.
+		/// </summary>
+		IRegionRepository RegionRepository { get; }
+
+		/// <summary>
+		/// Репозиторий транзакций.
+		/// </summary>
+		ITransactionRepository TransactionRepository { get; }
+
+		/// <summary>
+		/// Репозиторий шагов транзакции.
+		/// </summary>
+		ITransactonActionRepository TransactonActionRepository { get; }
+
+		/// <summary>
+		/// Репозиторий пользователей.
+		/// </summary>
+		IUserRepository UserRepository { get; }
+
+		/// <summary>
+		/// Репозиторий кошельков.
+		/// </summary>
+		IWalletRepository WalletRepository { get; }
 
 		#endregion
 

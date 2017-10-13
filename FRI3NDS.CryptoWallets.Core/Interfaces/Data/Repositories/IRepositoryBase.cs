@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
+﻿namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 {
 	/// <summary>
 	/// Базовый репозиторий.
