@@ -43,7 +43,7 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <summary>
 		/// Получить список типов частоты оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список типов частоты оповещений.</returns>
 		public List<AlertFrequency> Get()
 		{
 			return _list;

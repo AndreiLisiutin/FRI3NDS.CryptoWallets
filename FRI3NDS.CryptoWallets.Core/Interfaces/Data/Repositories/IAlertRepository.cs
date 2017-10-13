@@ -19,7 +19,7 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список оповещений.</returns>
 		List<Alert> Get();
 
 		/// <summary>

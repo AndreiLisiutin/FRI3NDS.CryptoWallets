@@ -18,7 +18,7 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Services
 		/// <summary>
 		/// Получить список типов частоты оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список типов частоты оповещений.</returns>
 		List<AlertFrequency> Get();
 	}
 }

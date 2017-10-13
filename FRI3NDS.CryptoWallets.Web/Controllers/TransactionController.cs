@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер транзакций.
 	/// </summary>
 	[Route("api/Transaction")]
-	public class TransactionController: ControllerBase, ITransactionService
+	public class TransactionController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис транзакций.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Транзакция, найденная по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Transaction GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactionRepository.GetById(id);
-			}
+			return TransactionService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список транзакций.
 		/// </summary>
 		/// <returns>Список транзакций.</returns>
+		[HttpGet]
 		public List<Transaction> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactionRepository.Get();
-			}
+			return TransactionService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="transaction">Сохраняемая транзакция.</param>
 		/// <returns>Сохраненная транзакция с заполненным идентификатором</returns>
-		public Guid Save(TransactionBase transaction)
+		[HttpPost]
+		public Guid Save([FromBody]TransactionBase transaction)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactionRepository.Save(transaction);
-			}
+			return TransactionService.Save(transaction);
 		}
 
 		/// <summary>
 		/// Удалить транзакцию по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор транзакции.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.TransactionRepository.Delete(id);
-			}
+			TransactionService.Delete(id);
 		}
 	}
 }

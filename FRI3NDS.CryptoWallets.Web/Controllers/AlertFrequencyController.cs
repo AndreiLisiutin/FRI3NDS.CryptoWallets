@@ -9,7 +9,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер типов оповещений об изменении курса по частоте.
 	/// </summary>
 	[Route("api/AlertFrequency")]
-	public class AlertFrequencyController : Controller
+	public class AlertFrequencyController : ControllerBase
 	{
 		/// <summary>
 		/// Сервис типов оповещений об изменении курса по частоте.
@@ -25,12 +25,21 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			this.AlertFrequencyService = alertFrequencyService;
 		}
 
+		/// <summary>
+		/// Получить список типов частоты оповещений.
+		/// </summary>
+		/// <returns>Список типов частоты оповещений.</returns>
 		[HttpGet]
 		public List<AlertFrequency> Get()
 		{
 			return AlertFrequencyService.Get();
 		}
-		
+
+		/// <summary>
+		/// Получить тип частоты оповещений по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор типа частоты оповещений.</param>
+		/// <returns>Тип частоты оповещений.</returns>
 		[HttpGet("{id}")]
 		public AlertFrequency Get(int id)
 		{

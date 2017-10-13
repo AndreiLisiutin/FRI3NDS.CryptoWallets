@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер курсов валюты.
 	/// </summary>
 	[Route("api/CurrencyRate")]
-	public class CurrencyRateController: ControllerBase, ICurrencyRateService
+	public class CurrencyRateController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис курсов валюты.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Курс валюты, найденный по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public CurrencyRate GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CurrencyRateRepository.GetById(id);
-			}
+			return CurrencyRateService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список курсов валюты.
 		/// </summary>
 		/// <returns>Список курсов валюты.</returns>
+		[HttpGet]
 		public List<CurrencyRate> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CurrencyRateRepository.Get();
-			}
+			return CurrencyRateService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="CurrencyRate">Сохраняемый курс валюты.</param>
 		/// <returns>Сохраненный курс валюты с заполненным идентификатором</returns>
+		[HttpPost]
 		public Guid Save(CurrencyRateBase currencyRate)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CurrencyRateRepository.Save(currencyRate);
-			}
+			return CurrencyRateService.Save(currencyRate);
 		}
 
 		/// <summary>
 		/// Удалить курс валюты по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор курса валюты.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.CurrencyRateRepository.Delete(id);
-			}
+			CurrencyRateService.Delete(id);
 		}
 	}
 }

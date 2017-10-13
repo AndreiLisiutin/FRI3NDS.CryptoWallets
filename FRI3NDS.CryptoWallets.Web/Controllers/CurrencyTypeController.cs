@@ -9,7 +9,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер типов валюты.
 	/// </summary>
 	[Route("api/CurrencyType")]
-	public class CurrencyTypeController: ControllerBase, ICurrencyTypeService
+	public class CurrencyTypeController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис типов валюты.
@@ -30,24 +30,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор типа валюты.</param>
 		/// <returns>Тип валюты, найденный по его идентификатору.</returns>
+		[HttpGet("{id}")]
 		public CurrencyType GetById(int id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CurrencyTypeRepository.GetById(id);
-			}
+			return CurrencyTypeService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список типов валют.
 		/// </summary>
 		/// <returns>Список типов валют.</returns>
+		[HttpGet]
 		public List<CurrencyType> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CurrencyTypeRepository.Get();
-			}
+			return CurrencyTypeService.Get();
 		}
 	}
 }

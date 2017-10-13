@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер сертификатов 1С пользователя.
 	/// </summary>
 	[Route("api/Certificate")]
-	public class CertificateController: ControllerBase, ICertificateService
+	public class CertificateController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис сертификатов 1С пользователя.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Сертификат 1С пользователя, найденный по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Certificate GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateRepository.GetById(id);
-			}
+			return CertificateService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список сертификатов 1С пользователя.
 		/// </summary>
 		/// <returns>Список сертификатов 1С пользователя.</returns>
+		[HttpGet]
 		public List<Certificate> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateRepository.Get();
-			}
+			return CertificateService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="certificate">Сохраняемый сертификат 1С пользователя.</param>
 		/// <returns>Сохраненный сертификат 1С пользователя с заполненным идентификатором</returns>
-		public Guid Save(CertificateBase certificate)
+		[HttpPost]
+		public Guid Save([FromBody]CertificateBase certificate)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateRepository.Save(certificate);
-			}
+			return CertificateService.Save(certificate);
 		}
 
 		/// <summary>
 		/// Удалить сертификат 1С пользователя по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор сертификата 1С пользователя.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.CertificateRepository.Delete(id);
-			}
+			CertificateService.Delete(id);
 		}
 	}
 }

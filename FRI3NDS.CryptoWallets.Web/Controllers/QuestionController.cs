@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер вопросов пользователя.
 	/// </summary>
 	[Route("api/Question")]
-	public class QuestionController: ControllerBase, IQuestionService
+	public class QuestionController : ControllerBase
 	{
 		/// <summary>
 		/// Сервис вопросов пользователя.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Вопрос пользователя, найденный по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Question GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.QuestionRepository.GetById(id);
-			}
+			return QuestionService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список вопросов пользователя.
 		/// </summary>
 		/// <returns>Список вопросов пользователя.</returns>
+		[HttpGet]
 		public List<Question> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.QuestionRepository.Get();
-			}
+			return QuestionService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="question">Сохраняемый вопрос пользователя.</param>
 		/// <returns>Сохраненный вопрос пользователя с заполненным идентификатором</returns>
-		public Guid Save(QuestionBase question)
+		[HttpPost]
+		public Guid Save([FromBody]QuestionBase question)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.QuestionRepository.Save(question);
-			}
+			return QuestionService.Save(question);
 		}
 
 		/// <summary>
 		/// Удалить вопрос пользователя по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор вопроса пользователя.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.QuestionRepository.Delete(id);
-			}
+			QuestionService.Delete(id);
 		}
 	}
 }

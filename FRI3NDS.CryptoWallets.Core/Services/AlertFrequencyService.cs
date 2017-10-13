@@ -30,7 +30,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <summary>
 		/// Получить список типов частоты оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список типов частоты оповещений.</returns>
 		public List<AlertFrequency> Get()
 		{
 			using (var uow = this.CreateUnitOfWork())

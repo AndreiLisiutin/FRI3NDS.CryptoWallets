@@ -24,30 +24,26 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		{
 			this.CertificateTypeService = certificateTypeService;
 		}
-		
+
 		/// <summary>
 		/// Получить тип сертификата по идентификатору типа.
 		/// </summary>
 		/// <param name="id">Идентификатор типа.</param>
 		/// <returns>Тип сертификата, найденный по его идентификатору.</returns>
+		[HttpGet("{id}")]
 		public CertificateType GetById(int id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateTypeRepository.GetById(id);
-			}
+			return CertificateTypeService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список типов сертификатов.
 		/// </summary>
 		/// <returns>Список типов сертификатов.</returns>
+		[HttpGet]
 		public List<CertificateType> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateTypeRepository.Get();
-			}
+			return CertificateTypeService.Get();
 		}
 	}
 }

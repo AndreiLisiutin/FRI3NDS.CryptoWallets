@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер оповещений об изменении курса.
 	/// </summary>
 	[Route("api/Alert")]
-	public class AlertController : Controller
+	public class AlertController : ControllerBase
 	{
 		/// <summary>
 		/// Сервис оповещений об изменении курса.
@@ -26,24 +26,42 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			this.AlertService = alertService;
 		}
 
+		/// <summary>
+		/// Получить список оповещений.
+		/// </summary>
+		/// <returns>Список оповещений.</returns>
 		[HttpGet]
 		public List<Alert> Get()
 		{
 			return AlertService.Get();
 		}
-		
+
+		/// <summary>
+		/// Получить оповещение по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор оповещения.</param>
+		/// <returns>Оповещение.</returns>
 		[HttpGet("{id}")]
 		public Alert Get(Guid id)
 		{
 			return AlertService.GetById(id);
 		}
-		
+
+		/// <summary>
+		/// Сохранить оповещение.
+		/// </summary>
+		/// <param name="alert">Сохраняемое оповещение.</param>
+		/// <returns>Сохраненное оповещение с заполненным идентификатором</returns>
 		[HttpPost]
-		public Guid Post([FromBody]AlertBase value)
+		public Guid Post([FromBody]AlertBase alert)
 		{
-			return AlertService.Save(value);
+			return AlertService.Save(alert);
 		}
-		
+
+		/// <summary>
+		/// Удалить оповещение по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор оповещения.</param>
 		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{

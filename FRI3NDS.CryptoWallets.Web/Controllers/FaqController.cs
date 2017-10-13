@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер ЧаВо.
 	/// </summary>
 	[Route("api/Faq")]
-	public class FaqController: ControllerBase, IFaqService
+	public class FaqController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис ЧаВо.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>ЧаВо, найденный по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Faq GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.FaqRepository.GetById(id);
-			}
+			return FaqService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список ЧаВо.
 		/// </summary>
 		/// <returns>Список ЧаВо.</returns>
+		[HttpGet]
 		public List<Faq> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.FaqRepository.Get();
-			}
+			return FaqService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="faq">Сохраняемый ЧаВо.</param>
 		/// <returns>Сохраненный ЧаВо с заполненным идентификатором</returns>
-		public Guid Save(FaqBase faq)
+		[HttpPost]
+		public Guid Save([FromBody]FaqBase faq)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.FaqRepository.Save(faq);
-			}
+			return FaqService.Save(faq);
 		}
 
 		/// <summary>
 		/// Удалить ЧаВо по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор ЧаВо.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.FaqRepository.Delete(id);
-			}
+			FaqService.Delete(id);
 		}
 	}
 }

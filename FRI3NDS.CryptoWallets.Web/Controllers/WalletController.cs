@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер кошельков.
 	/// </summary>
 	[Route("api/Wallet")]
-	public class WalletController: ControllerBase, IWalletService
+	public class WalletController : ControllerBase
 	{
 		/// <summary>
 		/// Сервис кошельков.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор кошелька.</param>
 		/// <returns>Кошелек, найденная по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Wallet GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.WalletRepository.GetById(id);
-			}
+			return WalletService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список кошельков.
 		/// </summary>
 		/// <returns>Список кошельков.</returns>
+		[HttpGet]
 		public List<Wallet> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.WalletRepository.Get();
-			}
+			return WalletService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="wallet">Сохраняемый кошелек.</param>
 		/// <returns>Сохраненный кошелек с заполненным идентификатором</returns>
-		public Guid Save(WalletBase wallet)
+		[HttpPost]
+		public Guid Save([FromBody]WalletBase wallet)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.WalletRepository.Save(wallet);
-			}
+			return WalletService.Save(wallet);
 		}
 
 		/// <summary>
 		/// Удалить кошелек по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор кошелька.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.WalletRepository.Delete(id);
-			}
+			WalletService.Delete(id);
 		}
 	}
 }

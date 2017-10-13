@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер документов.
 	/// </summary>
 	[Route("api/Document")]
-	public class DocumentController: ControllerBase, IDocumentService
+	public class DocumentController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис документов.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Документ, найденный по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Document GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.DocumentRepository.GetById(id);
-			}
+			return DocumentService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список документов.
 		/// </summary>
 		/// <returns>Список документов.</returns>
+		[HttpGet]
 		public List<Document> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.DocumentRepository.Get();
-			}
+			return DocumentService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="document">Сохраняемый документ.</param>
 		/// <returns>Сохраненный документ с заполненным идентификатором</returns>
-		public Guid Save(DocumentBase document)
+		[HttpPost]
+		public Guid Save([FromBody]DocumentBase document)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.DocumentRepository.Save(document);
-			}
+			return DocumentService.Save(document);
 		}
 
 		/// <summary>
 		/// Удалить документ по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор документа.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.DocumentRepository.Delete(id);
-			}
+			DocumentService.Delete(id);
 		}
 	}
 }

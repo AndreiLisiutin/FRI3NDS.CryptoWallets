@@ -31,7 +31,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <summary>
 		/// Получить список оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список оповещений.</returns>
 		public List<Alert> Get()
 		{
 			using (var uow = this.CreateUnitOfWork())

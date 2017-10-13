@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер пользователей.
 	/// </summary>
 	[Route("api/User")]
-	public class UserController: ControllerBase, IUserService
+	public class UserController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис пользователей.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор пользователя.</param>
 		/// <returns>Пользователь, найденная по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public User GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.UserRepository.GetById(id);
-			}
+			return UserService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список пользователей.
 		/// </summary>
 		/// <returns>Список пользователей.</returns>
+		[HttpGet]
 		public List<User> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.UserRepository.Get();
-			}
+			return UserService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="user">Сохраняемый пользователь.</param>
 		/// <returns>Сохраненный пользователь с заполненным идентификатором</returns>
-		public Guid Save(UserBase user)
+		[HttpPost]
+		public Guid Save([FromBody]UserBase user)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.UserRepository.Save(user);
-			}
+			return UserService.Save(user);
 		}
 
 		/// <summary>
 		/// Удалить пользователя по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор пользователя.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.UserRepository.Delete(id);
-			}
+			UserService.Delete(id);
 		}
 	}
 }

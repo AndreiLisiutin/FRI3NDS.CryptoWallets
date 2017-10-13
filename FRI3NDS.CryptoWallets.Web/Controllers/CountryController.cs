@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер стран.
 	/// </summary>
 	[Route("api/Country")]
-	public class CountryController: ControllerBase, ICountryService
+	public class CountryController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис стран.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор страны.</param>
 		/// <returns>Страна, найденная по ее идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Country GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CountryRepository.GetById(id);
-			}
+			return CountryService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список стран.
 		/// </summary>
 		/// <returns>Список стран.</returns>
+		[HttpGet]
 		public List<Country> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CountryRepository.Get();
-			}
+			return CountryService.Get();
 		}
 	}
 }

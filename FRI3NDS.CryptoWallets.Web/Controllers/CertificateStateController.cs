@@ -30,24 +30,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор статуса.</param>
 		/// <returns>Статус сертификата, найденный по его идентификатору.</returns>
+		[HttpGet("{id}")]
 		public CertificateState GetById(int id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateStateRepository.GetById(id);
-			}
+			return CertificateStateService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список статусов сертификатов.
 		/// </summary>
 		/// <returns>Список статусов сертификатов.</returns>
+		[HttpGet]
 		public List<CertificateState> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CertificateStateRepository.Get();
-			}
+			return CertificateStateService.Get();
 		}
 	}
 }

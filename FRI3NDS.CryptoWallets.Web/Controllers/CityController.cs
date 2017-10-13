@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер городов.
 	/// </summary>
 	[Route("api/City")]
-	public class CityController: ControllerBase, ICityService
+	public class CityController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис городов.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор города.</param>
 		/// <returns>Город, найденный по его идентификатору.</returns>
+		[HttpGet("{id}")]
 		public City GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CityRepository.GetById(id);
-			}
+			return CityService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список городов.
 		/// </summary>
 		/// <returns>Список городов.</returns>
+		[HttpGet]
 		public List<City> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.CityRepository.Get();
-			}
+			return CityService.Get();
 		}
 	}
 }

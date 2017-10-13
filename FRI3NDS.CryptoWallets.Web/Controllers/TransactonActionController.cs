@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер шагов транзакции.
 	/// </summary>
 	[Route("api/TransactonAction")]
-	public class TransactonActionController: ControllerBase, ITransactonActionService
+	public class TransactonActionController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис шагов транзакции.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор.</param>
 		/// <returns>Шаг транзакции, найденная по идентификатору.</returns>
+		[HttpGet("{id}")]
 		public TransactonAction GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactonActionRepository.GetById(id);
-			}
+			return TransactonActionService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список шагов транзакции.
 		/// </summary>
 		/// <returns>Список шагов транзакции.</returns>
+		[HttpGet]
 		public List<TransactonAction> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactonActionRepository.Get();
-			}
+			return TransactonActionService.Get();
 		}
 
 		/// <summary>
@@ -56,24 +52,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="transactonAction">Сохраняемый шаг транзакции.</param>
 		/// <returns>Сохраненный шаг транзакции с заполненным идентификатором</returns>
-		public Guid Save(TransactonActionBase transactonAction)
+		[HttpPost]
+		public Guid Save([FromBody]TransactonActionBase transactonAction)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.TransactonActionRepository.Save(transactonAction);
-			}
+			return TransactonActionService.Save(transactonAction);
 		}
 
 		/// <summary>
 		/// Удалить шаг транзакции по идентификатору.
 		/// </summary>
 		/// <param name="id">Идентификатор шага транзакции.</param>
+		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				uow.TransactonActionRepository.Delete(id);
-			}
+			TransactonActionService.Delete(id);
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер вложений в документ.
 	/// </summary>
 	[Route("api/Attachment")]
-	public class AttachmentController : Controller
+	public class AttachmentController : ControllerBase
 	{
 		/// <summary>
 		/// Сервис вложений в документ.
@@ -26,24 +26,42 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			this.AttachmentService = attachmentService;
 		}
 
+		/// <summary>
+		/// Получить вложение в документ по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор.</param>
+		/// <returns>Вложение в документ (файл), найденное по идентификатору.</returns>
+		[HttpGet("{id}")]
+		public Attachment Get(Guid id)
+		{
+			return AttachmentService.GetById(id);
+		}
+
+		/// <summary>
+		/// Получить список вложений в документ.
+		/// </summary>
+		/// <returns>Список вложений в документ.</returns>
 		[HttpGet]
 		public List<Attachment> Get()
 		{
 			return AttachmentService.Get();
 		}
 		
-		[HttpGet("{id}")]
-		public Attachment Get(Guid id)
-		{
-			return AttachmentService.GetById(id);
-		}
-		
+		/// <summary>
+		/// Сохранить вложение в документ.
+		/// </summary>
+		/// <param name="attachment">Сохраняемое вложение в документ.</param>
+		/// <returns>Сохраненное вложение в документ с заполненным идентификатором</returns>
 		[HttpPost]
-		public Guid Post([FromBody]AttachmentBase value)
+		public Guid Post([FromBody]AttachmentBase attachment)
 		{
-			return AttachmentService.Save(value);
+			return AttachmentService.Save(attachment);
 		}
-		
+
+		/// <summary>
+		/// Удалить вложение в документ по идентификатору.
+		/// </summary>
+		/// <param name="id">Идентификатор вложения в документ.</param>
 		[HttpDelete("{id}")]
 		public void Delete(Guid id)
 		{

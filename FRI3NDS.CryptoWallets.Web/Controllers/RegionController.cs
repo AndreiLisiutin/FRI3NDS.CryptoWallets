@@ -10,7 +10,7 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	/// Контроллер регионов.
 	/// </summary>
 	[Route("api/Region")]
-	public class RegionController: ControllerBase, IRegionService
+	public class RegionController: ControllerBase
 	{
 		/// <summary>
 		/// Сервис регионов.
@@ -31,24 +31,20 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		/// </summary>
 		/// <param name="id">Идентификатор региона.</param>
 		/// <returns>Регион, найденный по его идентификатору.</returns>
+		[HttpGet("{id}")]
 		public Region GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.RegionRepository.GetById(id);
-			}
+			return RegionService.GetById(id);
 		}
 
 		/// <summary>
 		/// Получить список регионов.
 		/// </summary>
 		/// <returns>Список регионов.</returns>
+		[HttpGet]
 		public List<Region> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
-			{
-				return uow.RegionRepository.Get();
-			}
+			return RegionService.Get();
 		}
 	}
 }

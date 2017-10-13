@@ -31,7 +31,7 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <summary>
 		/// Получить список оповещений.
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Список оповещений.</returns>
 		public List<Alert> Get()
 		{
 			return store.Get();
