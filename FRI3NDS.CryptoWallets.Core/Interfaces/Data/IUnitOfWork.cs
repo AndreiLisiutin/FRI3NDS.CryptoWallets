@@ -1,4 +1,5 @@
-﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories._Admin;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories._Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,22 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data
 	public interface IUnitOfWork : IDisposable
 	{
 		#region Repositories
-		
+
+		/// <summary>
+		/// Репозиторий типов частоты оповещений.
+		/// </summary>
+		IAlertFrequencyRepository AlertFrequencyRepository { get; }
+
+		/// <summary>
+		/// Репозиторий типов частоты оповещений.
+		/// </summary>
+		IAlertRepository AlertRepository { get; }
+
+		/// <summary>
+		/// Репозиторий вложений в документ (файлов).
+		/// </summary>
+		IAttachmentRepository AttachmentRepository { get; }
+
 		#endregion
 
 		/// <summary>

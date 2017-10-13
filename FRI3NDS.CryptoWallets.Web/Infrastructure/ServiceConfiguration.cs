@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
+using FRI3NDS.CryptoWallets.Core.Services;
+using FRI3NDS.CryptoWallets.Data.UnitOfWork;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -29,6 +33,8 @@ namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 		/// <param name="services">Набор сервисов.</param>
 		private static void ConfigureCoreServices(IServiceCollection services)
 		{
+			services.AddTransient<IAlertService, AlertService>();
+			services.AddTransient<IAlertFrequencyService, AlertFrequencyService>();
 		}
 
 		/// <summary>
@@ -37,6 +43,7 @@ namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 		/// <param name="services">Набор сервисов.</param>
 		private static void ConfigureDataServices(IServiceCollection services)
 		{
+			services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
 		}
 	}
 }

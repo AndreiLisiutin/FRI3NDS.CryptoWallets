@@ -1,5 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories._Admin;
+using FRI3NDS.CryptoWallets.Data.Repositories;
 using FRI3NDS.CryptoWallets.Data.Repositories._Admin;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
@@ -29,6 +31,21 @@ namespace FRI3NDS.CryptoWallets.Data.UnitOfWork
 		protected DataContext DataContext => this._dataContext.Value;
 
 		#region Repositories
+
+		/// <summary>
+		/// Репозиторий типов частоты оповещений.
+		/// </summary>
+		public IAlertFrequencyRepository AlertFrequencyRepository => new AlertFrequencyRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий типов частоты оповещений.
+		/// </summary>
+		public IAlertRepository AlertRepository => new AlertRepository(this.DataContext);
+
+		/// <summary>
+		/// Репозиторий вложений в документ (файлов).
+		/// </summary>
+		public IAttachmentRepository AttachmentRepository => new AttachmentRepository(this.DataContext);
 
 		#endregion
 
