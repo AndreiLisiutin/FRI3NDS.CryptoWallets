@@ -5,13 +5,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\lib\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\lib\angular-toastr\dist\angular-toastr.min.css" />
+    <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="wwwroot\lib\html5-boilerplate\dist\css\main.css" />
+    <Content Include="wwwroot\lib\html5-boilerplate\dist\css\normalize.css" />
+    <Content Include="wwwroot\lib\nprogress\nprogress.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="4.4.1" />
@@ -19,6 +34,25 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\angular-animate\angular-animate.min.js" />
+    <None Include="wwwroot\lib\angular-base64-upload\dist\angular-base64-upload.min.js" />
+    <None Include="wwwroot\lib\angular-resource\angular-resource.min.js" />
+    <None Include="wwwroot\lib\angular-route\angular-route.min.js" />
+    <None Include="wwwroot\lib\angular-sanitize\angular-sanitize.min.js" />
+    <None Include="wwwroot\lib\angular-swx-local-storage\release\swx-local-storage.min.js" />
+    <None Include="wwwroot\lib\angular-toastr\dist\angular-toastr.min.js" />
+    <None Include="wwwroot\lib\angular-toastr\dist\angular-toastr.tpls.min.js" />
+    <None Include="wwwroot\lib\angular-ui-router-styles\ui-router-styles.js" />
+    <None Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <None Include="wwwroot\lib\angular\angular.min.js" />
+    <None Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\html5-boilerplate\dist\js\vendor\modernizr-2.8.3.min.js" />
+    <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
+    <None Include="wwwroot\lib\lodash\lodash.js" />
+    <None Include="wwwroot\lib\nprogress\nprogress.js" />
   </ItemGroup>
 
   <ItemGroup>

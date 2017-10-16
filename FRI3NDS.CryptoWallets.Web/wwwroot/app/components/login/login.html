@@ -1,0 +1,18 @@
+﻿<div class="container">
+	<h2>Логин</h2>
+	<form name="loginForm">
+		<div class="form-group row" ng-class="{'has-danger': loginForm.login.$invalid}">
+			<label class="col-lg-2 col-form-label" for="login">Логин</label>
+			<input name="login" id="login" class="form-control col-lg-10" type="text" required
+				   ng-model="parameters.login">
+		</div>
+
+		<div class="form-group row" ng-class="{'has-danger': loginForm.password.$invalid}">
+			<label class="col-lg-2 col-form-label" for="password">Логин</label>
+			<input name="password" id="password" class="form-control col-lg-10" type="text" required
+				   ng-model="parameters.password">
+		</div>
+		<button class="btn btn-primary" ng-disabled="loginForm.$invalid" ng-click="doLogin()">ОК</button>
+		<button class="btn btn-primary" ng-click="doTest()">Test</button>
+	</form>
+</div>

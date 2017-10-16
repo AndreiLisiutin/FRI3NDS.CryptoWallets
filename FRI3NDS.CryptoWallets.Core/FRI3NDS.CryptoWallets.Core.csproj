@@ -137,5 +137,9 @@
     <Folder Include="Models\Business\" />
     <Folder Include="Models\Enums\" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Messages.en.resx" />
+    <EmbeddedResource Include="Resources\Messages.ru.resx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

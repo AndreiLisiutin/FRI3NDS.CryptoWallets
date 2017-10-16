@@ -4,6 +4,7 @@ using FRI3NDS.CryptoWallets.Core.Services;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Localization;
 
 namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 {
@@ -50,6 +51,10 @@ namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 			services.AddTransient<ITransactonActionService, TransactonActionService>();
 			services.AddTransient<IUserService, UserService>();
 			services.AddTransient<IWalletService, WalletService>();
+
+			//локализация с ресурсами по строкам
+			services.AddTransient<IStringLocalizer>((provider) => provider.GetService<IStringLocalizerFactory>()
+				.Create("Messages", typeof(UserService).Assembly.GetName().Name));
 		}
 
 		/// <summary>
