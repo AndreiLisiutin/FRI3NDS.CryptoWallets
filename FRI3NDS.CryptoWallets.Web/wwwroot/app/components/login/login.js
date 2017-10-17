@@ -41,5 +41,17 @@ angular.module('crypto.controllers')
 						alert(error && error.data && error.data.message, 'Ошибка');
 					});
 			};
+
+
+			let connection = new signalR.HubConnection('/chat', { qs: { SessionId: '123' } });
+			debugger;
+
+			connection.on('Send', data => {
+				console.log(data);
+			});
+
+			connection.start()
+				.then(() => connection.invoke('Send', 'Hello'));
+			
 		}
 	]);

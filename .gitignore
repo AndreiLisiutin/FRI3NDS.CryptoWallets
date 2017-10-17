@@ -32,3 +32,4 @@ _ReSharper*/
 packages/
 *.orig
 /FRI3NDS.CryptoWallets.Web/wwwroot/lib
+/FRI3NDS.CryptoWallets.Web/node_modules

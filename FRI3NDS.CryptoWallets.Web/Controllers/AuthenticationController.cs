@@ -1,8 +1,10 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Utils;
 using FRI3NDS.CryptoWallets.Web.Infrastructure;
+using FRI3NDS.CryptoWallets.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -18,12 +20,13 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	[Route("api/Authentication")]
 	public class AuthenticationController : ControllerBase
 	{
-
+		IHubContext<ChatHub> _context;
 		/// <summary>
 		/// Конструктор контроллера для работы с аутентификацией и учетными записями пользователей.
 		/// </summary>
-		public AuthenticationController(IStringLocalizer localizer)
+		public AuthenticationController(IStringLocalizer localizer, IHubContext<ChatHub> context)
 		{
+			this._context = context;
 			var hello = localizer["HELLO", "world"];
 		}
 
@@ -36,6 +39,9 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		[HttpPost]
 		public TokenInfo GetToken([FromBody]UserLoginModel user)
 		{
+			this._context.Clients.All.InvokeAsync("Send", "hello");
+
+
 			UserBase existUser = new UserBase() { Login = user.Login, UserId = Guid.NewGuid() };
 			Argument.Require(existUser != null, "Введенные данные пользователя не верны.");
 			TokenInfo token = this._GenerateToken(existUser);
@@ -176,71 +182,4 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		}
 	}
 
-	/// <summary>
-	/// Инфа про токен доступа.
-	/// </summary>
-	public class TokenInfo
-	{
-		/// <summary>
-		/// Текст токена.
-		/// </summary>
-		public string Token { get; set; }
-
-		/// <summary>
-		/// Токен для обновления токена.
-		/// </summary>
-		public string RefreshToken { get; set; }
-
-		/// <summary>
-		/// Время создания токена.
-		/// </summary>
-		public DateTime CreatedOn { get; set; }
-
-		/// <summary>
-		/// Время деактивации токена.
-		/// </summary>
-		public DateTime ExpiresOn { get; set; }
-
-		/// <summary>
-		/// Тип токена.
-		/// </summary>
-		public string TokenType { get; set; }
-	}
-
-	/// <summary>
-	/// Модель для аутентификации и регистрации пользователя.
-	/// </summary>
-	public class UserLoginModel
-	{
-		/// <summary>
-		/// Логин.
-		/// </summary>
-		public string Login { get; set; }
-
-		/// <summary>
-		/// Пароль.
-		/// </summary>
-		public string Password { get; set; }
-
-		/// <summary>
-		/// Мыло.
-		/// </summary>
-		public string Email { get; set; }
-	}
-
-	/// <summary>
-	/// Модель для обновления токена доступа.
-	/// </summary>
-	public class RefreshTokenModel
-	{
-		/// <summary>
-		/// Токен для обновления токена.
-		/// </summary>
-		public string RefreshToken { get; set; }
-
-		/// <summary>
-		/// Идентификатор пользователя.
-		/// </summary>
-		public Guid UserId { get; set; }
-	}
 }

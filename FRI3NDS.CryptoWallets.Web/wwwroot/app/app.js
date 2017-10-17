@@ -7,7 +7,8 @@ angular.module('crypto.extensions', [
 	'ngAnimate',
 	'naif.base64',
 	'toastr',
-	'swxLocalStorage'
+	'swxLocalStorage',
+	//'SignalR'
 ]);
 angular.module('crypto.services', [
 	'ngResource'

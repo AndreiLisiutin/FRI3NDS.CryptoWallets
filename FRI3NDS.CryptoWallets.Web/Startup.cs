@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Options;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Web
 {
@@ -67,6 +69,7 @@ namespace FRI3NDS.CryptoWallets.Web
 
 			//стандартное
 			services.AddMvc();
+			services.AddSignalR();
 			ServiceConfiguration.ConfigureServices(services, this.Configuration);
 		}
 
@@ -89,12 +92,26 @@ namespace FRI3NDS.CryptoWallets.Web
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
 
+			app.UseSignalR(routes =>
+			{
+				routes.MapHub<ChatHub>("chat");
+			});
+
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Home}/{action=Index}/{id?}");
 			});
+		}
+	}
+
+	public class ChatHub : Hub
+	{
+
+		public Task Send(string message)
+		{
+			return Clients.Client(this.Context.ConnectionId).InvokeAsync("Send", message);
 		}
 	}
 }
