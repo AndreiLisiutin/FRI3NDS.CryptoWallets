@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.3" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.0" />
@@ -46,12 +50,13 @@
     <None Include="wwwroot\app\%40aspnet\signalr-client\dist\browser\signalr-msgpackprotocol-1.0.0-alpha2-final.min.js" />
     <None Include="wwwroot\app\%40aspnet\signalr-client\dist\browser\signalr-msgpackprotocolES5-1.0.0-alpha2-final.js" />
     <None Include="wwwroot\app\%40aspnet\signalr-client\dist\browser\signalr-msgpackprotocolES5-1.0.0-alpha2-final.min.js" />
-    <None Include="wwwroot\lib\angular-animate\angular-animate.min.js" />
-    <None Include="wwwroot\lib\angular-base64-upload\dist\angular-base64-upload.min.js" />
-    <None Include="wwwroot\lib\angular-resource\angular-resource.min.js" />
-    <None Include="wwwroot\lib\angular-route\angular-route.min.js" />
-    <None Include="wwwroot\lib\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="wwwroot\lib\angular-ui-router-styles\ui-router-styles.js" />
+    <Content Include="wwwroot\lib\angular-ui-router\release\angular-ui-router.min.js" />
+    <Content Include="wwwroot\lib\angular\angular.min.js" />
+    <Content Include="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="wwwroot\lib\html5-boilerplate\dist\js\vendor\modernizr-2.8.3.min.js" />
     <None Include="wwwroot\lib\angular-signalr-hub\signalr-hub.min.js" />
+    <Content Include="wwwroot\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\lib\angular-swx-local-storage\release\swx-local-storage.min.js" />
     <None Include="wwwroot\lib\angular-toastr\dist\angular-toastr.min.js" />
     <None Include="wwwroot\lib\angular-toastr\dist\angular-toastr.tpls.min.js" />
@@ -63,6 +68,8 @@
     <None Include="wwwroot\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\lib\lodash\lodash.js" />
     <None Include="wwwroot\lib\nprogress\nprogress.js" />
+    <Content Include="wwwroot\lib\lodash\lodash.js" />
+    <Content Include="wwwroot\lib\nprogress\nprogress.js" />
     <None Include="wwwroot\lib\signalr\jquery.signalR.min.js" />
   </ItemGroup>
 
