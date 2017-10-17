@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class CurrencyRateService : ServiceBase, ICurrencyRateService
 	{
-		public CurrencyRateService(IUnitOfWorkFactory unitOfWorkFactory)
-			: base(unitOfWorkFactory)
+		public CurrencyRateService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -23,7 +24,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Курс валюты, найденный по идентификатору.</returns>
 		public CurrencyRate GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRateRepository.GetById(id);
 			}
@@ -35,7 +36,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список курсов валюты.</returns>
 		public List<CurrencyRate> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRateRepository.Get();
 			}
@@ -48,7 +49,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Сохраненный курс валюты с заполненным идентификатором</returns>
 		public Guid Save(CurrencyRateBase currencyRate)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRateRepository.Save(currencyRate);
 			}
@@ -60,7 +61,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <param name="id">Идентификатор курса валюты.</param>
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				uow.CurrencyRateRepository.Delete(id);
 			}

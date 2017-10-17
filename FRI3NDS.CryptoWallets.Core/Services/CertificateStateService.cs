@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System.Collections.Generic;
 
 namespace FRI3NDS.CryptoWallets.Core.Services
@@ -10,8 +11,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class CertificateStateService : ServiceBase, ICertificateStateService
 	{
-		public CertificateStateService(IUnitOfWorkFactory unitOfWorkFactory)
-			: base(unitOfWorkFactory)
+		public CertificateStateService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -22,7 +23,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Статус сертификата, найденный по его идентификатору.</returns>
 		public CertificateState GetById(int id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CertificateStateRepository.GetById(id);
 			}
@@ -34,7 +35,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список статусов сертификатов.</returns>
 		public List<CertificateState> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CertificateStateRepository.Get();
 			}

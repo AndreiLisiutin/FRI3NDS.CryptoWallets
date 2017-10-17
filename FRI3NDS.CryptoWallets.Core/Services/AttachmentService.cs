@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,7 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class AttachmentService : ServiceBase, IAttachmentService
 	{
-		public AttachmentService(IUnitOfWorkFactory unitOfWorkFactory) : base(unitOfWorkFactory)
+		public AttachmentService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer) 
+            : base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -22,7 +24,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Вложение в документ (файл), найденное по идентификатору.</returns>
 		public Attachment GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.AttachmentRepository.GetById(id);
 			}
@@ -34,7 +36,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список вложений в документ.</returns>
 		public List<Attachment> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.AttachmentRepository.Get();
 			}
@@ -47,7 +49,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Сохраненное вложение в документ с заполненным идентификатором</returns>
 		public Guid Save(AttachmentBase attachment)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.AttachmentRepository.Save(attachment);
 			}
@@ -59,7 +61,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <param name="id">Идентификатор вложения в документ.</param>
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				uow.AttachmentRepository.Delete(id);
 			}

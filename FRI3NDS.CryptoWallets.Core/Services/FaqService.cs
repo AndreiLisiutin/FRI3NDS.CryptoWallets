@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class FaqService : ServiceBase, IFaqService
 	{
-		public FaqService(IUnitOfWorkFactory unitOfWorkFactory)
-			: base(unitOfWorkFactory)
+		public FaqService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -23,7 +24,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>ЧаВо, найденный по идентификатору.</returns>
 		public Faq GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.FaqRepository.GetById(id);
 			}
@@ -35,7 +36,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список ЧаВо.</returns>
 		public List<Faq> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.FaqRepository.Get();
 			}
@@ -48,7 +49,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Сохраненный ЧаВо с заполненным идентификатором</returns>
 		public Guid Save(FaqBase faq)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.FaqRepository.Save(faq);
 			}
@@ -60,7 +61,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <param name="id">Идентификатор ЧаВо.</param>
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				uow.FaqRepository.Delete(id);
 			}

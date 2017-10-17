@@ -1,4 +1,5 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
+using Microsoft.Extensions.Localization;
 
 namespace FRI3NDS.CryptoWallets.Core.Services
 {
@@ -10,20 +11,27 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// </summary>
 		private IUnitOfWorkFactory _unitOfWorkFactory;
 
-		/// <summary>
-		/// Конструктор тестового сервиса для работы с данными.
-		/// </summary>
-		/// <param name="unitOfWorkFactory">Фабрика единиц работы.</param>
-		public ServiceBase(IUnitOfWorkFactory unitOfWorkFactory)
+        /// <summary>
+        /// Сервис локализации.
+        /// </summary>
+        protected IStringLocalizer Localizer { get; private set; }
+
+        /// <summary>
+        /// Конструктор тестового сервиса для работы с данными.
+        /// </summary>
+        /// <param name="unitOfWorkFactory">Фабрика единиц работы.</param>
+        /// <param name="localizer">Сервис локализации.</param>
+        public ServiceBase(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
 		{
 			this._unitOfWorkFactory = unitOfWorkFactory;
-		}
+			this.Localizer = localizer;
+        }
 
-		/// <summary>
-		/// Создать единицу работы с подключением к базе данных.
-		/// </summary>
-		/// <returns>Единица работы.</returns>
-		protected IUnitOfWork CreateUnitOfWork()
+        /// <summary>
+        /// Создать единицу работы с подключением к базе данных.
+        /// </summary>
+        /// <returns>Единица работы.</returns>
+        protected IUnitOfWork CreateUnitOfWork()
 		{
 			return this._unitOfWorkFactory.Create();
 		}

@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class DocumentService : ServiceBase, IDocumentService
 	{
-		public DocumentService(IUnitOfWorkFactory unitOfWorkFactory)
-			: base(unitOfWorkFactory)
+		public DocumentService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -23,7 +24,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Документ, найденный по идентификатору.</returns>
 		public Document GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.DocumentRepository.GetById(id);
 			}
@@ -35,7 +36,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список документов.</returns>
 		public List<Document> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.DocumentRepository.Get();
 			}
@@ -48,7 +49,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Сохраненный документ с заполненным идентификатором</returns>
 		public Guid Save(DocumentBase document)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.DocumentRepository.Save(document);
 			}
@@ -60,7 +61,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <param name="id">Идентификатор документа.</param>
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				uow.DocumentRepository.Delete(id);
 			}

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using NLog.Extensions.Logging;
 using NLog.Web;
 using System.Globalization;
@@ -49,7 +50,8 @@ namespace FRI3NDS.CryptoWallets.Web
 				options.ClaimsIssuer = TokenAuthenticationOptions.Issuer;
 				options.RequireHttpsMetadata = false;
 				options.TokenValidationParameters = TokenAuthenticationOptions.Parameters;
-			});
+                options.Configuration = new OpenIdConnectConfiguration();
+            });
 
 			//локализация по заголовку Language (en|ru) в запросе
 			services.AddLocalization(options => options.ResourcesPath = "Resources");

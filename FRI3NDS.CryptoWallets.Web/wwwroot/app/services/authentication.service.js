@@ -10,6 +10,16 @@
 					method: 'POST',
 					isArray: false
 				},
+                signUp: {
+                    url: '/api/Authentication/SignUp',
+                    method: 'POST',
+					isArray: false
+				},
+                refreshToken: {
+                    url: '/api/Authentication/RefreshToken',
+                    method: 'POST',
+					isArray: false
+				},
 				test: {
 					url: '/api/Authentication/Test',
 					method: 'GET',

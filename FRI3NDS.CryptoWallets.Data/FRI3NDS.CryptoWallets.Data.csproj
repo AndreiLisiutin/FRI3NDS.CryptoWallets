@@ -101,10 +101,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Scripts\_Service\000_Service%24DropFunction.sql" />
-    <EmbeddedResource Include="Scripts\_Service\001_Service%24Versions.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Save.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\_Service\001_Service%24Extensions.sql" />
+    <EmbeddedResource Include="Scripts\_Service\002_Service%24Versions.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

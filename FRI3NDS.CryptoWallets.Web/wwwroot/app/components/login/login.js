@@ -20,18 +20,22 @@ angular.module('crypto.controllers')
 				login: 'lisutin.andrey',
 				password: 'lisutin.andrey'
 			};
-			$http.defaults.headers.common.Language = 'ru';
+            $http.defaults.headers.common.Language = 'ru';
+
 			$scope.doLogin = function () {
 				AuthenticationService.getToken($scope.loginModel).$promise
 					.then(function (token) {
 						alert('Успешно');
 						$localStorage.currentUser = { username: $scope.loginModel.login, token: token.token };
+                        $localStorage.refreshToken = token.refreshToken;
+                        $localStorage.userId = token.userId;
 						$http.defaults.headers.common.Authorization = token.tokenType + ' ' + token.token;
 					})
 					.catch(function (error) {
 						alert(error && error.data && error.data.message, 'Ошибка');
 					});
-			};
+            };
+
 			$scope.doTest = function () {
 				AuthenticationService.test().$promise
 					.then(function (data) {
@@ -42,16 +46,29 @@ angular.module('crypto.controllers')
 					});
 			};
 
+            $scope.doRefreshToken = function () {
+                AuthenticationService.refreshToken({
+                    refreshToken: $localStorage.refreshToken,
+                    userId: $localStorage.userId
+                }).$promise
+					.then(function (data) {
+                        alert('Успешно');
+					})
+					.catch(function (error) {
+						alert(error && error.data && error.data.message, 'Ошибка');
+					});
+			};
 
-			let connection = new signalR.HubConnection('/chat', { qs: { SessionId: '123' } });
-			debugger;
 
-			connection.on('Send', data => {
-				console.log(data);
-			});
+			//let connection = new signalR.HubConnection('/chat', { qs: { SessionId: '123' } });
+			//debugger;
 
-			connection.start()
-				.then(() => connection.invoke('Send', 'Hello'));
+			//connection.on('Send', data => {
+			//	console.log(data);
+			//});
+
+			//connection.start()
+			//	.then(() => connection.invoke('Send', 'Hello'));
 			
 		}
 	]);

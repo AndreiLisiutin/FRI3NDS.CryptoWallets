@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERROR_ARGUMENT_NULL" xml:space="preserve">
+    <value>Argument "{0}" is empty.</value>
+  </data>
+  <data name="ERROR_EMPTY" xml:space="preserve">
+    <value>Parameter "{0}" is empty.</value>
+  </data>
+  <data name="ERROR_NOT_FOUND" xml:space="preserve">
+    <value>Entity "{0}" was not found. Maybe it was removed during current request. </value>
+  </data>
   <data name="HELLO" xml:space="preserve">
-    <value>Hello from english {0}</value>
+    <value>Hello from english "{0}"</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="User.Email" xml:space="preserve">
+    <value>UserEmail</value>
+  </data>
+  <data name="User.Error.AlreadyExists" xml:space="preserve">
+    <value>User with the same login already exists.</value>
+  </data>
+  <data name="User.Error.InvalidCredentials" xml:space="preserve">
+    <value>User credentials are incorrect.</value>
+  </data>
+  <data name="User.Error.TokenUserInvalid" xml:space="preserve">
+    <value>This token's refresh token belongs to another user.</value>
+  </data>
+  <data name="User.Login" xml:space="preserve">
+    <value>User login</value>
+  </data>
+  <data name="User.Password" xml:space="preserve">
+    <value>UserPassword</value>
   </data>
 </root>

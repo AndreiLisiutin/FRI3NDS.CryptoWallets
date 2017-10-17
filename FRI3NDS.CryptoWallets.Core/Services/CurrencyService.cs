@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Services;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class CurrencyService : ServiceBase, ICurrencyService
 	{
-		public CurrencyService(IUnitOfWorkFactory unitOfWorkFactory)
-			: base(unitOfWorkFactory)
+		public CurrencyService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 
@@ -23,7 +24,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Валюта, найденный по идентификатору.</returns>
 		public Currency GetById(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRepository.GetById(id);
 			}
@@ -35,7 +36,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Список валют.</returns>
 		public List<Currency> Get()
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRepository.Get();
 			}
@@ -48,7 +49,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <returns>Сохраненная валюта с заполненным идентификатором</returns>
 		public Guid Save(CurrencyBase currency)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				return uow.CurrencyRepository.Save(currency);
 			}
@@ -60,7 +61,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 		/// <param name="id">Идентификатор валюты.</param>
 		public void Delete(Guid id)
 		{
-			using (var uow = this.CreateUnitOfWork())
+			using (var uow = CreateUnitOfWork())
 			{
 				uow.CurrencyRepository.Delete(id);
 			}

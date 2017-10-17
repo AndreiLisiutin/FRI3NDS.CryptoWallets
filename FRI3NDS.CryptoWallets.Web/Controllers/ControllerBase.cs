@@ -1,6 +1,7 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Web.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -15,6 +16,24 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	[EnableCors(origins: "*", headers: "*", methods: "*")]
 	public class ControllerBase : Controller
 	{
+        /// <summary>
+        /// Сервис локализации.
+        /// </summary>
+        protected IStringLocalizer Localizer { get; set; }
+
+        public ControllerBase()
+        {
+        }
+
+        /// <summary>
+        /// Базовый контроллер.
+        /// </summary>
+        /// <param name="localizer">Сервис локализации.</param>
+        public ControllerBase(IStringLocalizer localizer)
+        {
+            this.Localizer = localizer;
+        }
+
 		/// <summary>
 		/// Создать слепок данных о пользователе для его токена.
 		/// </summary>
@@ -39,14 +58,28 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		{
 			if (User.Identity.IsAuthenticated)
 			{
-				ClaimsIdentity identity = User.Identity as ClaimsIdentity;
-				if (identity.HasClaim(c => c.Type == ClaimTypes.NameIdentifier)
-					&& Guid.TryParse(identity.FindFirst(ClaimTypes.NameIdentifier).Value, out Guid id))
-				{
-					return id;
-				}
+                Guid? userId = GetUserId(User);
+                if ((userId ?? default(Guid)) != default(Guid))
+                {
+                    return userId.Value;
+                }
 			}
 			throw new InvalidOperationException("Пользователь не авторизован.");
 		}
+
+        /// <summary>
+        /// Получить идентификатор пользователя из модели Principal пользователя.
+        /// </summary>
+        /// <param name="claimsPrincipal">Модель Principal пользователя.</param>
+        /// <returns>Идентификатор пользователя.</returns>
+        protected Guid? GetUserId(ClaimsPrincipal claimsPrincipal)
+        {
+            if (claimsPrincipal.HasClaim(c => c.Type == ClaimTypes.NameIdentifier)
+                    && Guid.TryParse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value, out Guid id))
+            {
+                return id;
+            }
+            return null;
+        }
 	}
 }

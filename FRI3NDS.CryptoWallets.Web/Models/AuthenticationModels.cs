@@ -7,10 +7,15 @@ namespace FRI3NDS.CryptoWallets.Web.Models
 	/// </summary>
 	public class TokenInfo
 	{
-		/// <summary>
-		/// Текст токена.
-		/// </summary>
-		public string Token { get; set; }
+        /// <summary>
+        /// Идентификатор пользователя (Удалить).
+        /// </summary>
+        public Guid UserId { get; set; }
+
+        /// <summary>
+        /// Текст токена.
+        /// </summary>
+        public string Token { get; set; }
 
 		/// <summary>
 		/// Токен для обновления токена.

@@ -1,11 +1,14 @@
 ﻿using FRI3NDS.CryptoWallets.Utils.Exceptions;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web.Http.ExceptionHandling;
 
 namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 {
@@ -75,16 +78,16 @@ namespace FRI3NDS.CryptoWallets.Web.Infrastructure
 
 			context.Response.ContentType = "application/json";
 			context.Response.StatusCode = (int)responseCode;
-			return context.Response.WriteAsync(errorText);
+			return context.Response.WriteAsync(JsonConvert.SerializeObject(new { Message = errorText }));
 		}
 
-		/// <summary>
-		/// Записать в лог исключение.
-		/// </summary>
-		/// <param name="errorId">Идентификатор исключения.</param>
-		/// <param name="exception">Исключение.</param>
-		/// <param name="level">Уровень исключения. Если он пустой, лог не пишется.</param>
-		private void _WriteLog(Guid errorId, Exception exception, LogLevel? level = null)
+        /// <summary>
+        /// Записать в лог исключение.
+        /// </summary>
+        /// <param name="errorId">Идентификатор исключения.</param>
+        /// <param name="exception">Исключение.</param>
+        /// <param name="level">Уровень исключения. Если он пустой, лог не пишется.</param>
+        private void _WriteLog(Guid errorId, Exception exception, LogLevel? level = null)
 		{
 			if (!level.HasValue)
 			{

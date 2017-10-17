@@ -34,5 +34,20 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Services
 		/// </summary>
 		/// <param name="id">Идентификатор пользователя.</param>
 		void Delete(Guid id);
-	}
+
+        /// <summary>
+        /// Создать нового пользователя.
+        /// </summary>
+        /// <param name="user">Данные пользователя.</param>
+        /// <returns>Данные пользователя с идентификатором.</returns>
+        UserBase CreateUser(UserBase user);
+
+        /// <summary>
+        /// Проверить существование пользователя с заданными логином и паролем.
+        /// </summary>
+        /// <param name="login">Логин.</param>
+        /// <param name="password">Пароль.</param>
+        /// <returns>Пользователь, если существует, или NULL.</returns>
+        UserBase VerifyUser(string login, string password);
+    }
 }

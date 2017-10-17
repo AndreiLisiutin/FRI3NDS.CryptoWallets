@@ -117,7 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERROR_ARGUMENT_NULL" xml:space="preserve">
+    <value>Аргумент "{0}" не задан.</value>
+  </data>
+  <data name="ERROR_EMPTY" xml:space="preserve">
+    <value>Параметр "{0}" не задан.</value>
+  </data>
+  <data name="ERROR_NOT_FOUND" xml:space="preserve">
+    <value>Сущность "{0}" не найдена. Возможно, она была удалена во время обработки запроса.</value>
+  </data>
   <data name="HELLO" xml:space="preserve">
-    <value>Привет мир {0}</value>
+    <value>Привет мир "{0}"</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="User.Email" xml:space="preserve">
+    <value>Email пользователя</value>
+  </data>
+  <data name="User.Error.AlreadyExists" xml:space="preserve">
+    <value>Пользователь с заданным логином уже существует.</value>
+  </data>
+  <data name="User.Error.InvalidCredentials" xml:space="preserve">
+    <value>Данные для входа пользователя (логин/пароль) некорректны.</value>
+  </data>
+  <data name="User.Error.TokenUserInvalid" xml:space="preserve">
+    <value>Пользователь, указанный в токене для обновления токена, некорректный.</value>
+  </data>
+  <data name="User.Login" xml:space="preserve">
+    <value>Логин пользователя</value>
+  </data>
+  <data name="User.Password" xml:space="preserve">
+    <value>Пароль пользователя</value>
   </data>
 </root>

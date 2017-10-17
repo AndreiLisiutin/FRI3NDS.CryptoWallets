@@ -16,18 +16,29 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <returns>Пользователь, найденная по идентификатору.</returns>
 		User GetById(Guid id);
 
-		/// <summary>
-		/// Получить список пользователей.
-		/// </summary>
-		/// <returns>Список пользователей.</returns>
-		List<User> Get();
 
-		/// <summary>
-		/// Сохранить пользователя.
-		/// </summary>
-		/// <param name="user">Сохраняемый пользователь.</param>
-		/// <returns>Сохраненный пользователь с заполненным идентификатором</returns>
-		Guid Save(UserBase user);
+        /// <summary>
+        /// Получить список пользователей.
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя.</param>
+        /// <param name="login">Логин пользователя.</param>
+        /// <param name="email">Email пользователя.</param>
+        /// <param name="pageSize">Размер страницы.</param>
+        /// <param name="pageNumber">Номер страницы.</param>
+        /// <returns>Список пользователей.</returns>
+        List<User> Get(
+            Guid? userId = null,
+            string login = null,
+            string email = null,
+            int? pageSize = null,
+            int? pageNumber = null);
+
+        /// <summary>
+        /// Сохранить пользователя.
+        /// </summary>
+        /// <param name="user">Сохраняемый пользователь.</param>
+        /// <returns>Сохраненный пользователь с заполненным идентификатором</returns>
+        Guid Save(UserBase user);
 
 		/// <summary>
 		/// Удалить пользователя по идентификатору.
