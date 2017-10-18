@@ -19,7 +19,15 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список городов.
 		/// </summary>
+		/// <param name="cityId">Идентификатор города.</param>
+		/// <param name="regionId">Идентификатор региона.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список городов.</returns>
-		List<City> Get();
+		List<City> Get(
+			Guid? cityId = null,
+			Guid? regionId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 	}
 }

@@ -100,19 +100,55 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Save.sql" />
     <EmbeddedResource Include="Scripts\_Service\000_Service%24DropFunction.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Delete.sql" />
-    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Query.sql" />
-    <EmbeddedResource Include="Scripts\StoredProcedures\User%24Save.sql" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Scripts\_Service\001_Service%24Extensions.sql" />
     <EmbeddedResource Include="Scripts\_Service\002_Service%24Versions.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\StoredProcedures\Alert%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Alert%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Alert%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\AlertFrequency%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\AlertFrequency%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\AlertFrequency%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Attachment%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Attachment%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Attachment%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Certificate%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Certificate%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Certificate%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateState%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateState%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateState%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateType%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateType%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\CertificateType%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\City%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\City%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\City%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Country%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Country%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Country%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Faq%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Faq%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Faq%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Question%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Question%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Question%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Region%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Region%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Region%24Save.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Wallet%24Delete.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Wallet%24Query.sql" />
+    <EmbeddedResource Include="Scripts\StoredProcedures\Wallet%24Save.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

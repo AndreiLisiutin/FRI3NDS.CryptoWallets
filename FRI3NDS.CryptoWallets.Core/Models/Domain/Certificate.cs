@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Core.Models.Domain
 {
@@ -27,6 +23,12 @@ namespace FRI3NDS.CryptoWallets.Core.Models.Domain
 		/// </summary>
 		/// <see cref="CertificateType"/>
 		public int CertificateTypeId { get; set; }
+
+		/// <summary>
+		/// Статус запроса на сертификат.
+		/// </summary>
+		/// <see cref="CertificateState"/>
+		public int CertificateStateId { get; set; }
 
 		/// <summary>
 		/// Идентификатор документа с файлами персональных документов пользователя.
@@ -83,18 +85,12 @@ namespace FRI3NDS.CryptoWallets.Core.Models.Domain
 		/// Отчество владельца (данные из сертификата).
 		/// </summary>
 		public string OwnerPatronymic { get; set; }
-
-		/// <summary>
-		/// Статус запроса на сертификат.
-		/// </summary>
-		/// <see cref="CertificateState"/>
-		public int CertificateStateId { get; set; }
 	}
 
 	/// <summary>
 	/// Сертификат 1С пользователя.
 	/// </summary>
-	public class Certificate: CertificateBase
+	public class Certificate : CertificateBase
 	{
 
 	}

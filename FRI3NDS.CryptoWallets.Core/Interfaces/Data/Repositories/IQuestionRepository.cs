@@ -19,8 +19,16 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список вопросов пользователя.
 		/// </summary>
+		/// <param name="questionId">Идентификатор вопроса.</param>
+		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список вопросов пользователя.</returns>
-		List<Question> Get();
+		List<Question> Get(
+			Guid? questionId = null,
+			Guid? userId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 
 		/// <summary>
 		/// Сохранить вопрос пользователя.

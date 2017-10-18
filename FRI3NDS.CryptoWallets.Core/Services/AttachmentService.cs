@@ -12,8 +12,8 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	/// </summary>
 	public class AttachmentService : ServiceBase, IAttachmentService
 	{
-		public AttachmentService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer) 
-            : base(unitOfWorkFactory, localizer)
+		public AttachmentService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 

@@ -10,7 +10,6 @@ using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 
 namespace FRI3NDS.CryptoWallets.Web.Controllers
@@ -21,19 +20,19 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 	[Route("api/Authentication")]
 	public class AuthenticationController : ControllerBase
 	{
-        /// <summary>
-        /// Сервис работы с пользователями.
-        /// </summary>
-        protected IUserService UserService { get; private set; }
+		/// <summary>
+		/// Сервис работы с пользователями.
+		/// </summary>
+		protected IUserService UserService { get; private set; }
 
-        /// <summary>
-        /// Конструктор контроллера для работы с аутентификацией и учетными записями пользователей.
-        /// </summary>
-        public AuthenticationController(IUserService userService, IStringLocalizer localizer, IHubContext<ChatHub> context)
-            :base (localizer)
+		/// <summary>
+		/// Конструктор контроллера для работы с аутентификацией и учетными записями пользователей.
+		/// </summary>
+		public AuthenticationController(IUserService userService, IStringLocalizer localizer, IHubContext<ChatHub> context)
+			: base(localizer)
 		{
-            this.UserService = userService;
-        }
+			this.UserService = userService;
+		}
 
 		/// <summary>
 		/// Действие входа в приложение, получение токена доступа.
@@ -44,11 +43,11 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		[HttpPost]
 		public TokenInfo GetToken([FromBody]UserLoginModel user)
 		{
-            Argument.Require(user != null, Localizer["ERROR_ARGUMENT_NULL", nameof(user)]);
-            UserBase existUser = UserService.VerifyUser(user.Login, user.Password);
-            Argument.Require(existUser != null, Localizer["User.Error.InvalidCredentials"]);
-            TokenInfo token = _GenerateToken(existUser);
-            return token;
+			Argument.Require(user != null, Localizer["ERROR_ARGUMENT_NULL", nameof(user)]);
+			UserBase existUser = UserService.VerifyUser(user.Login, user.Password);
+			Argument.Require(existUser != null, Localizer["User.Error.InvalidCredentials"]);
+			TokenInfo token = _GenerateToken(existUser);
+			return token;
 		}
 
 		/// <summary>
@@ -67,9 +66,9 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			var userId = GetUserId(person);
 			Argument.Require(userId.HasValue && userId == refreshTokenRequest.UserId, Localizer["User.Error.TokenUserInvalid"]);
 
-            UserBase user = UserService.GetById(userId.Value);
-            Argument.Require(user != null, Localizer["ERROR_NOT_FOUND", Localizer["User"]]);
-            var token = _GenerateToken(user);
+			UserBase user = UserService.GetById(userId.Value);
+			Argument.Require(user != null, Localizer["ERROR_NOT_FOUND", Localizer["User"]]);
+			var token = _GenerateToken(user);
 			return token;
 		}
 
@@ -93,16 +92,16 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 		[Route("SignUp")]
 		[HttpPost]
 		public TokenInfo Registrer([FromBody]UserLoginModel user)
-        {
-            Argument.Require(user != null, Localizer["ERROR_ARGUMENT_NULL", nameof(user)]);
-            UserBase newUser = new UserBase()
-            {
-                Login = user.Login,
-                Email = user.Email,
-                PasswordHash = user.Password
-            };
-            newUser = UserService.CreateUser(newUser);
-            TokenInfo token = this._GenerateToken(newUser);
+		{
+			Argument.Require(user != null, Localizer["ERROR_ARGUMENT_NULL", nameof(user)]);
+			UserBase newUser = new UserBase()
+			{
+				Login = user.Login,
+				Email = user.Email,
+				PasswordHash = user.Password
+			};
+			newUser = UserService.CreateUser(newUser);
+			TokenInfo token = this._GenerateToken(newUser);
 			return token;
 		}
 
@@ -130,12 +129,12 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			});
 
 			var token = handler.WriteToken(securityToken);
-            
+
 			var refreshToken = _GenerateRefreshToken(user);
 			return new TokenInfo()
 			{
-                UserId = user.UserId,
-                CreatedOn = createdOn,
+				UserId = user.UserId,
+				CreatedOn = createdOn,
 				ExpiresOn = expiresOn,
 				Token = token,
 				RefreshToken = refreshToken,
@@ -143,11 +142,11 @@ namespace FRI3NDS.CryptoWallets.Web.Controllers
 			};
 		}
 
-        /// <summary>
-        /// Сгенерить токен обновления токенов.
-        /// </summary>
-        /// <param name="user">Пользователь.</param>
-        /// <returns>Токен обновления токенов.</returns>
+		/// <summary>
+		/// Сгенерить токен обновления токенов.
+		/// </summary>
+		/// <param name="user">Пользователь.</param>
+		/// <returns>Токен обновления токенов.</returns>
 		private string _GenerateRefreshToken(UserBase user)
 		{
 			var handler = new JwtSecurityTokenHandler();

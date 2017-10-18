@@ -13,7 +13,7 @@ namespace FRI3NDS.CryptoWallets.Core.Services
 	public class AlertService : ServiceBase, IAlertService
 	{
 		public AlertService(IUnitOfWorkFactory unitOfWorkFactory, IStringLocalizer localizer)
-            : base(unitOfWorkFactory, localizer)
+			: base(unitOfWorkFactory, localizer)
 		{
 		}
 

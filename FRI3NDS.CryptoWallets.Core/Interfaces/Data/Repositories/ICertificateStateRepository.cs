@@ -18,7 +18,13 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список статусов сертификатов.
 		/// </summary>
+		/// <param name="certificateStateId">Идентификатор статуса сертификата.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список статусов сертификатов.</returns>
-		List<CertificateState> Get();
+		List<CertificateState> Get(
+			int? certificateStateId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 	}
 }

@@ -1,16 +1,13 @@
 ﻿using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 {
 	/// <summary>
 	/// Репозиторий вложений в документ (файлов).
 	/// </summary>
-	public interface IAttachmentRepository: IRepositoryBase<Attachment>
+	public interface IAttachmentRepository : IRepositoryBase<Attachment>
 	{
 		/// <summary>
 		/// Получить вложение в документ по идентификатору.
@@ -22,8 +19,16 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список вложений в документ.
 		/// </summary>
+		/// <param name="attachmentId">Идентификатор вложения.</param>
+		/// <param name="documentId">Идентификатор документа.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список вложений в документ.</returns>
-		List<Attachment> Get();
+		List<Attachment> Get(
+			Guid? attachmentId = null,
+			Guid? documentId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 
 		/// <summary>
 		/// Сохранить вложение в документ.

@@ -1,7 +1,9 @@
-﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+﻿using Dapper;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
@@ -11,34 +13,11 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 	/// </summary>
 	public class CertificateTypeRepository : RepositoryBase<CertificateType>, ICertificateTypeRepository
 	{
-		private static List<CertificateType> _list = new List<CertificateType>()
-		{
-			new CertificateType()
-			{
-				CertificateTypeId = 1,
-				Name = "Физическое лицо"
-			},
-			new CertificateType()
-			{
-				CertificateTypeId = 2,
-				Name = "Юридическое лицо"
-			},
-			new CertificateType()
-			{
-				CertificateTypeId = 3,
-				Name = "Красно личико"
-			},
-			new CertificateType()
-			{
-				CertificateTypeId = 4,
-				Name = "Лицо со шрамом"
-			}
-		};
-
 		public CertificateTypeRepository(DataContext dataContext)
 			: base(dataContext)
 		{
 		}
+
 
 		/// <summary>
 		/// Получить тип сертификата по идентификатору типа.
@@ -47,16 +26,28 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <returns>Тип сертификата, найденный по его идентификатору.</returns>
 		public CertificateType GetById(int id)
 		{
-			return _list.FirstOrDefault(e => e.CertificateTypeId == id);
+			return Get(certificateTypeId: id).FirstOrDefault();
 		}
 
 		/// <summary>
 		/// Получить список типов сертификатов.
 		/// </summary>
+		/// <param name="certificateTypeId">Идентификатор типа сертификата.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список типов сертификатов.</returns>
-		public List<CertificateType> Get()
+		public List<CertificateType> Get(
+			int? certificateTypeId = null,
+			int? pageSize = null,
+			int? pageNumber = null)
 		{
-			return _list;
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_certificate_type_id", certificateTypeId, DbType.Int32);
+			@params.Add("_page_size", pageSize, DbType.Int32);
+			@params.Add("_page_number", pageNumber, DbType.Int32);
+
+			List<CertificateType> list = CallProcedure<CertificateType>("CertificateState$Query", @params);
+			return list;
 		}
 	}
 }

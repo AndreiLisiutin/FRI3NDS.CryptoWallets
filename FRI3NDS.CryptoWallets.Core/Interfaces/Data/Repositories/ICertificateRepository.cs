@@ -19,8 +19,16 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список сертификатов 1С пользователя.
 		/// </summary>
+		/// <param name="certificateId">Идентификатор сертификата.</param>
+		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список сертификатов 1С пользователя.</returns>
-		List<Certificate> Get();
+		List<Certificate> Get(
+			Guid? certificateId = null,
+			Guid? userId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 
 		/// <summary>
 		/// Сохранить сертификат 1С пользователя.

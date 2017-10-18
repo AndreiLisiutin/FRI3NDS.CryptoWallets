@@ -1,14 +1,11 @@
-﻿using AutoMapper;
+﻿using Dapper;
 using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
-using FRI3NDS.CryptoWallets.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
 {
@@ -17,8 +14,6 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 	/// </summary>
 	public class QuestionRepository : RepositoryBase<QuestionBase>, IQuestionRepository
 	{
-		private static FakeStore<QuestionBase, Question> store = new FakeStore<QuestionBase, Question>();
-
 		public QuestionRepository(DataContext dataContext)
 			: base(dataContext)
 		{
@@ -27,20 +22,35 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <summary>
 		/// Получить вопрос пользователя по идентификатору.
 		/// </summary>
-		/// <param name="id">Идентификатор.</param>
+		/// <param name="id">Идентификатор вопроса.</param>
 		/// <returns>Вопрос пользователя, найденный по идентификатору.</returns>
 		public Question GetById(Guid id)
 		{
-			return store.GetById(id);
+			return Get(questionId: id).FirstOrDefault();
 		}
 
 		/// <summary>
 		/// Получить список вопросов пользователя.
 		/// </summary>
+		/// <param name="questionId">Идентификатор вопроса.</param>
+		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список вопросов пользователя.</returns>
-		public List<Question> Get()
+		public List<Question> Get(
+			Guid? questionId = null,
+			Guid? userId = null,
+			int? pageSize = null,
+			int? pageNumber = null)
 		{
-			return store.Get();
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_question_id", questionId, DbType.Guid);
+			@params.Add("_user_id", userId, DbType.Guid);
+			@params.Add("_page_size", pageSize, DbType.Int32);
+			@params.Add("_page_number", pageNumber, DbType.Int32);
+
+			List<Question> list = CallProcedure<Question>("Question$Query", @params);
+			return list;
 		}
 
 		/// <summary>
@@ -50,7 +60,18 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <returns>Сохраненный вопрос пользователя с заполненным идентификатором</returns>
 		public Guid Save(QuestionBase question)
 		{
-			return store.Save(question).QuestionId;
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_question_id", question.QuestionId, DbType.Guid);
+			@params.Add("_user_id", question.UserId, DbType.Guid);
+			@params.Add("_question", question.Question, DbType.String);
+			@params.Add("_email", question.Email, DbType.String);
+			@params.Add("_created_on", question.CreatedOn, DbType.Date);
+
+			Guid questionId = CallProcedure<Guid>("Question$Save", @params)
+				.FirstOrDefault();
+
+			question.QuestionId = questionId;
+			return questionId;
 		}
 
 		/// <summary>
@@ -59,7 +80,10 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <param name="id">Идентификатор вопроса пользователя.</param>
 		public void Delete(Guid id)
 		{
-			store.Delete(id);
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_id", id, DbType.Guid);
+
+			CallProcedure<Guid>("Question$Delete", @params);
 		}
 	}
 }

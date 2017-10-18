@@ -1,8 +1,10 @@
-﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+﻿using Dapper;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
@@ -12,25 +14,6 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 	/// </summary>
 	public class CountryRepository : RepositoryBase<Country>, ICountryRepository
 	{
-		private static List<Country> _list = new List<Country>()
-		{
-			new Country()
-			{
-				CountryId = Guid.NewGuid(),
-				Name = "Россия"
-			},
-			new Country()
-			{
-				CountryId = Guid.NewGuid(),
-				Name = "Пендосы"
-			},
-			new Country()
-			{
-				CountryId = Guid.NewGuid(),
-				Name = "Лягушатники"
-			}
-		};
-
 		public CountryRepository(DataContext dataContext)
 			: base(dataContext)
 		{
@@ -43,16 +26,28 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <returns>Страна, найденная по ее идентификатору.</returns>
 		public Country GetById(Guid id)
 		{
-			return _list.FirstOrDefault(e => e.CountryId == id);
+			return Get(countryId: id).FirstOrDefault();
 		}
 
 		/// <summary>
 		/// Получить список стран.
 		/// </summary>
-		/// <returns>Список стран.</returns>
-		public List<Country> Get()
+		/// <param name="countryId">Идентификатор страны.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
+		/// <returns></returns>
+		public List<Country> Get(
+			Guid? countryId = null,
+			int? pageSize = null,
+			int? pageNumber = null)
 		{
-			return _list;
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_country_id", countryId, DbType.Guid);
+			@params.Add("_page_size", pageSize, DbType.Int32);
+			@params.Add("_page_number", pageNumber, DbType.Int32);
+
+			List<Country> list = CallProcedure<Country>("Country$Query", @params);
+			return list;
 		}
 	}
 }

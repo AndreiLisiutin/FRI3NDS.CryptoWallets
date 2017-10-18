@@ -1,8 +1,10 @@
-﻿using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
+﻿using Dapper;
+using FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories;
 using FRI3NDS.CryptoWallets.Core.Models.Domain;
 using FRI3NDS.CryptoWallets.Data.UnitOfWork;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace FRI3NDS.CryptoWallets.Data.Repositories
@@ -12,34 +14,6 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 	/// </summary>
 	public class CityRepository : RepositoryBase<City>, ICityRepository
 	{
-		private static List<City> _list = new List<City>()
-		{
-			new City()
-			{
-				CityId = Guid.NewGuid(),
-				Name = "Казань",
-				RegionId = Guid.NewGuid()
-			},
-			new City()
-			{
-				CityId = Guid.NewGuid(),
-				Name = "Москва",
-				RegionId = Guid.NewGuid()
-			},
-			new City()
-			{
-				CityId = Guid.NewGuid(),
-				Name = "Лос-Анджелес",
-				RegionId = Guid.NewGuid()
-			},
-			new City()
-			{
-				CityId = Guid.NewGuid(),
-				Name = "Париж",
-				RegionId = Guid.NewGuid()
-			}
-		};
-
 		public CityRepository(DataContext dataContext)
 			: base(dataContext)
 		{
@@ -52,16 +26,31 @@ namespace FRI3NDS.CryptoWallets.Data.Repositories
 		/// <returns>Город, найденный по его идентификатору.</returns>
 		public City GetById(Guid id)
 		{
-			return _list.FirstOrDefault(e => e.CityId == id);
+			return Get(cityId: id).FirstOrDefault();
 		}
 
 		/// <summary>
 		/// Получить список городов.
 		/// </summary>
+		/// <param name="cityId">Идентификатор города.</param>
+		/// <param name="regionId">Идентификатор региона.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список городов.</returns>
-		public List<City> Get()
+		public List<City> Get(
+			Guid? cityId = null,
+			Guid? regionId = null,
+			int? pageSize = null,
+			int? pageNumber = null)
 		{
-			return _list;
+			DynamicParameters @params = new DynamicParameters();
+			@params.Add("_city_id", cityId, DbType.Guid);
+			@params.Add("_region_id", regionId, DbType.Guid);
+			@params.Add("_page_size", pageSize, DbType.Int32);
+			@params.Add("_page_number", pageNumber, DbType.Int32);
+
+			List<City> list = CallProcedure<City>("City$Query", @params);
+			return list;
 		}
 	}
 }

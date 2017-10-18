@@ -19,7 +19,13 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список стран.
 		/// </summary>
-		/// <returns>Список стран.</returns>
-		List<Country> Get();
+		/// <param name="countryId">Идентификатор страны.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
+		/// <returns></returns>
+		List<Country> Get(
+			Guid? countryId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 	}
 }

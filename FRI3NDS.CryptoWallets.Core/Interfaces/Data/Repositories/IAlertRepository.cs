@@ -19,8 +19,20 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список оповещений.
 		/// </summary>
+		/// <param name="alertId">Идентификатор оповещения.</param>
+		/// <param name="userId">Идентификатор пользователя.</param>
+		/// <param name="currencyId">Идентификатор главной валюты.</param>
+		/// <param name="isActive">Активное ли в данный момент оповещение.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список оповещений.</returns>
-		List<Alert> Get();
+		List<Alert> Get(
+			Guid? alertId = null,
+			Guid? userId = null,
+			Guid? currencyId = null,
+			bool? isActive = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 
 		/// <summary>
 		/// Сохранить оповещение.

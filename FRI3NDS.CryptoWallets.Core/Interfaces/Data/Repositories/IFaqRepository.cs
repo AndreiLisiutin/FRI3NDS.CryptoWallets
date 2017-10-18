@@ -19,8 +19,14 @@ namespace FRI3NDS.CryptoWallets.Core.Interfaces.Data.Repositories
 		/// <summary>
 		/// Получить список ЧаВо.
 		/// </summary>
+		/// <param name="faqId">Идентификатор ЧаВо.</param>
+		/// <param name="pageSize">Размер страницы.</param>
+		/// <param name="pageNumber">Номер страницы.</param>
 		/// <returns>Список ЧаВо.</returns>
-		List<Faq> Get();
+		List<Faq> Get(
+			Guid? faqId = null,
+			int? pageSize = null,
+			int? pageNumber = null);
 
 		/// <summary>
 		/// Сохранить документ.
